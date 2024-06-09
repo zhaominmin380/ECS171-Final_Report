@@ -6,7 +6,7 @@ This repository contains the code for our final project, which includes both the
 ## Contents
 
 - **Final_Report.ipynb**: This Jupyter Notebook contains all the code developed for the project including data processing, analysis, and visualization.
-- **app.py**: Located in the `flask` folder, this Python script is the main file for our Flask application. It handles web server requests and integrates backend functionalities with the frontend interface.
+- **app.py**: Located in the `FINALPROJECT_FLASK` folder, this Python script is the main file for our Flask application. It handles web server requests and integrates backend functionalities with the frontend interface.
 
 ## Installation
 
