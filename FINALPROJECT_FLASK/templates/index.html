@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Price Prediction</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: rgba(43, 226, 171, 0.267); /* Set background color */
+            color: black; /* Set text color to black for better visibility */
+        }
+        #container {
+            text-align: center;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgb(0, 0, 0);
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        label, input {
+            margin: 5px 0;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .options {
+            font-size: 0.9em;
+            color: #bbbbbb; /* Set options text color */
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Car Price Prediction</h1>
+        <form id="prediction-form">
+            <label for="buying">Buying:</label>
+            <input type="text" id="buying" name="buying">
+            <p class="options">Options: vhigh: 3, high: 2, med: 1, low: 0</p>
+            
+            <label for="maint">Maintenance:</label>
+            <input type="text" id="maint" name="maint">
+            <p class="options">Options: vhigh: 3, high: 2, med: 1, low: 0</p>
+            
+            <label for="doors">Doors:</label>
+            <input type="text" id="doors" name="doors">
+            <p class="options">Options: 2: 0, 3: 1, 4: 2, 5more: 3</p>
+            
+            <label for="persons">Persons:</label>
+            <input type="text" id="persons" name="persons">
+            <p class="options">Options: 2: 0, 4: 1, more: 2</p>
+            
+            <label for="lug_boot">Lug Boot:</label>
+            <input type="text" id="lug_boot" name="lug_boot">
+            <p class="options">Options: small: 0, med: 1, big: 2</p>
+            
+            <label for="safety">Safety:</label>
+            <input type="text" id="safety" name="safety">
+            <p class="options">Options: low: 0, med: 1, high: 2</p>
+            
+            <button type="submit">Predict</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <!-- Background Music -->
+    <audio autoplay loop>
+        <source src="background-music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        document.getElementById('prediction-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const buying = document.getElementById('buying').value;
+            const maint = document.getElementById('maint').value;
+            const doors = document.getElementById('doors').value;
+            const persons = document.getElementById('persons').value;
+            const lug_boot = document.getElementById('lug_boot').value;
+            const safety = document.getElementById('safety').value;
+            const data = { buying, maint, doors, persons, lug_boot, safety };
+            console.log('Sending data:', data);
+            fetch('/predict', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.text())
+            .then(text => {
+                console.log('Received text:', text);
+                document.getElementById('result').textContent = text;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('result').textContent = 'Error: ' + error;
+            });
+        });
+    </script>
+</body>
+</html>
