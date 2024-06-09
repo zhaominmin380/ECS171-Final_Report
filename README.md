@@ -1,4 +1,4 @@
-# Flask Final Project
+# ECS 171 Group 20 Final Project
 
 ## Overview
 This repository contains the code for our final project, which includes both the backend code and the frontend implementation using Flask. The project aims to demonstrate the application of Flask in building interactive web applications.
